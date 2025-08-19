@@ -1,36 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Tiger Party</title>
 
-<!doctype html>
-<html >
-    <head>
-        <title> Tiger Party</title>
-        <link rel="stylesheet" href="../static/style.css">
-    </head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
 
-    <div class="centered-container">
-        <h1  style="margin-top: 150px"></h1>
+<body>
+    <div class="container">
+        <h1 class="site-title">Tiger Party</h1>
 
-        <h1  >Welcome to Tiger Party!</h1>
-
-        <h1  >Sign in</h1>
-        <body >
-            <form action="" method="post" novalidate>
+        <div class="wrapper">
+            <form method="POST" novalidate>
+                <h1>Login</h1>
                 {{ form.hidden_tag() }}
-                <p>
-                    {{ form.username.label }}<br><br>
-                    {{ form.username(size=32) }}
-                </p>
-                <p>
-                    {{ form.password.label }}<br><br>
-                    {{ form.password(size=32) }}
-                </p>
-                <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-                <p>{{ form.submit() }}</p>
 
+                <div class="input-box">
+                    {{ form.username(class_="form-control", placeholder="username") }}
+                    <i class='bx bx-user-circle'></i>
+                </div>
+
+                <div class="input-box">
+                    {{ form.password(class_="form-control", placeholder="password") }}
+                    <i class='bx bx-lock'></i>
+                </div>
+
+                <!-- Properly sized Remember Me -->
+                <div style="margin: 20px 0; color: white; font-size: 0.95rem;">
+                    {{ form.remember_me(style="width: auto; height: auto; margin-right: 8px;") }} {{ form.remember_me.label }}
+                </div>
+
+                <button type="submit" class="btn">Login</button>
+
+                <button  onclick="location.href='/adminLogin'" class="btn" style="margin-top: 20px;">Admin Login</button>
             </form>
-            <div><a href="/register" style="color: black">Dont have an Account?</a></div>
-        </body>
+
+            <p class="create-account-link">
+                Don't have an account? <a href="{{ url_for('register') }}">Register</a>
+            </p>
+        </div>
     </div>
-    <button  onclick="location.href='/adminLogin'" class="admin-button">Admin Login</button>
-
-
+</body>
 </html>

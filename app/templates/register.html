@@ -1,36 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Tiger Party</title>
 
-<!doctype html>
-<html >
-    <head>
-        <title> Tiger Party</title>
-        <link rel="stylesheet" href="../static/style.css">
-    </head>
+    <!-- FIXED: Correct CSS path (DO NOT use '../static') -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/register.css') }}">
+    
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
 
-    <div class="centered-container">
-        <h1  style="margin-top: 150px"></h1>
+<body>
+    <div class="container">
+        <h1 class="site-title">Tiger Party</h1>
 
-        <h1 >Register</h1>
-        <body >
-            <form action="" method="post" novalidate>
+        <div class="wrapper">
+            <form method="POST" novalidate>
+                <h1>Register</h1>
                 {{ form.hidden_tag() }}
-                <p>
-                    {{ form.username.label }}<br><br>
 
-                    {{ form.username(size=32) }}
-                </p>
-                <p>
-                    {{ form.password.label }}<br><br>
-                    {{ form.password(size=32) }}
-                </p>
-                <p>{{ form.submit() }}</p>
-                <div><a href="/" style="color: black">Already have an Account?</a></div>
-                {% if  val %}
-                	<h4 style="color: red"> {{ val }}</h4>
+                <div class="input-box">
+                    {{ form.username(class_="form-control", placeholder="username") }}
+                    <i class='bx bx-user-circle'></i>
+                </div>
+
+                <div class="input-box">
+                    {{ form.password(class_="form-control", placeholder="password") }}
+                    <i class='bx bx-lock'></i>
+                </div>
+
+                <button type="submit" class="btn">Register</button>
+
+                {% if val %}
+                    <div class="alert alert-danger">{{ val }}</div>
                 {% endif %}
-
             </form>
-        </body>
+
+            <p class="create-account-link">
+                Already have an account?  <a href="{{ url_for('startPage') }}">Login</a>
+            </p>
+        </div>
     </div>
-
-
+</body>
 </html>
